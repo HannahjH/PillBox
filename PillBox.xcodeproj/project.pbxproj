@@ -1,0 +1,423 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AFE14908228B5A6B000F3253 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14907228B5A6B000F3253 /* AppDelegate.swift */; };
+		AFE1490D228B5A6B000F3253 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFE1490B228B5A6B000F3253 /* Main.storyboard */; };
+		AFE1490F228B5A70000F3253 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFE1490E228B5A70000F3253 /* Assets.xcassets */; };
+		AFE14912228B5A70000F3253 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFE14910228B5A70000F3253 /* LaunchScreen.storyboard */; };
+		AFE1491C228CAAA6000F3253 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE1491B228CAAA6000F3253 /* User.swift */; };
+		AFE14921228CB3FF000F3253 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFE14920228CB3FF000F3253 /* CloudKit.framework */; };
+		AFE14923228CC5D9000F3253 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14922228CC5D9000F3253 /* UserController.swift */; };
+		AFE14926228CCCAE000F3253 /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14925228CCCAE000F3253 /* Medication.swift */; };
+		AFE14928228CD265000F3253 /* MedicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14927228CD265000F3253 /* MedicationController.swift */; };
+		AFE1492A228DD911000F3253 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14929228DD911000F3253 /* SignUpViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AFE14904228B5A6B000F3253 /* PillBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PillBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFE14907228B5A6B000F3253 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AFE1490C228B5A6B000F3253 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AFE1490E228B5A70000F3253 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AFE14911228B5A70000F3253 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AFE14913228B5A70000F3253 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFE1491B228CAAA6000F3253 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AFE1491E228CB3FD000F3253 /* PillBox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PillBox.entitlements; sourceTree = "<group>"; };
+		AFE14920228CB3FF000F3253 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		AFE14922228CC5D9000F3253 /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		AFE14925228CCCAE000F3253 /* Medication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medication.swift; sourceTree = "<group>"; };
+		AFE14927228CD265000F3253 /* MedicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationController.swift; sourceTree = "<group>"; };
+		AFE14929228DD911000F3253 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		AFE1492C228E000D000F3253 /* PillBox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PillBox.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AFE14901228B5A6B000F3253 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFE14921228CB3FF000F3253 /* CloudKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AFE148FB228B5A6B000F3253 = {
+			isa = PBXGroup;
+			children = (
+				AFE14906228B5A6B000F3253 /* PillBox */,
+				AFE14905228B5A6B000F3253 /* Products */,
+				AFE1491F228CB3FF000F3253 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		AFE14905228B5A6B000F3253 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AFE14904228B5A6B000F3253 /* PillBox.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AFE14906228B5A6B000F3253 /* PillBox */ = {
+			isa = PBXGroup;
+			children = (
+				AFE1492C228E000D000F3253 /* PillBox.entitlements */,
+				AFE1491D228CAC1F000F3253 /* Models */,
+				AFE14924228CC5DE000F3253 /* Model Controllers */,
+				AFE1492B228DD927000F3253 /* View Controllers */,
+				AFE1491A228CAA96000F3253 /* Storyboard */,
+				AFE14919228CAA87000F3253 /* Resources */,
+			);
+			path = PillBox;
+			sourceTree = "<group>";
+		};
+		AFE14919228CAA87000F3253 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AFE14907228B5A6B000F3253 /* AppDelegate.swift */,
+				AFE1490E228B5A70000F3253 /* Assets.xcassets */,
+				AFE14910228B5A70000F3253 /* LaunchScreen.storyboard */,
+				AFE14913228B5A70000F3253 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AFE1491A228CAA96000F3253 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				AFE1490B228B5A6B000F3253 /* Main.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		AFE1491D228CAC1F000F3253 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AFE1491E228CB3FD000F3253 /* PillBox.entitlements */,
+				AFE1491B228CAAA6000F3253 /* User.swift */,
+				AFE14925228CCCAE000F3253 /* Medication.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AFE1491F228CB3FF000F3253 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AFE14920228CB3FF000F3253 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AFE14924228CC5DE000F3253 /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AFE14922228CC5D9000F3253 /* UserController.swift */,
+				AFE14927228CD265000F3253 /* MedicationController.swift */,
+			);
+			path = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		AFE1492B228DD927000F3253 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AFE14929228DD911000F3253 /* SignUpViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AFE14903228B5A6B000F3253 /* PillBox */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFE14916228B5A70000F3253 /* Build configuration list for PBXNativeTarget "PillBox" */;
+			buildPhases = (
+				AFE14900228B5A6B000F3253 /* Sources */,
+				AFE14901228B5A6B000F3253 /* Frameworks */,
+				AFE14902228B5A6B000F3253 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PillBox;
+			productName = PillBox;
+			productReference = AFE14904228B5A6B000F3253 /* PillBox.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AFE148FC228B5A6B000F3253 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "Hannah Hoff";
+				TargetAttributes = {
+					AFE14903228B5A6B000F3253 = {
+						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = AFE148FF228B5A6B000F3253 /* Build configuration list for PBXProject "PillBox" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AFE148FB228B5A6B000F3253;
+			productRefGroup = AFE14905228B5A6B000F3253 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AFE14903228B5A6B000F3253 /* PillBox */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AFE14902228B5A6B000F3253 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFE14912228B5A70000F3253 /* LaunchScreen.storyboard in Resources */,
+				AFE1490F228B5A70000F3253 /* Assets.xcassets in Resources */,
+				AFE1490D228B5A6B000F3253 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AFE14900228B5A6B000F3253 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFE1492A228DD911000F3253 /* SignUpViewController.swift in Sources */,
+				AFE14926228CCCAE000F3253 /* Medication.swift in Sources */,
+				AFE14923228CC5D9000F3253 /* UserController.swift in Sources */,
+				AFE1491C228CAAA6000F3253 /* User.swift in Sources */,
+				AFE14928228CD265000F3253 /* MedicationController.swift in Sources */,
+				AFE14908228B5A6B000F3253 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AFE1490B228B5A6B000F3253 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFE1490C228B5A6B000F3253 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AFE14910228B5A70000F3253 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFE14911228B5A70000F3253 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AFE14914228B5A70000F3253 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AFE14915228B5A70000F3253 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AFE14917228B5A70000F3253 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PillBox/PillBox.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L5VMA54SBQ;
+				INFOPLIST_FILE = "$(SRCROOT)/PillBox/Resources/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hannahhoff.PillBox;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AFE14918228B5A70000F3253 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PillBox/PillBox.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L5VMA54SBQ;
+				INFOPLIST_FILE = "$(SRCROOT)/PillBox/Resources/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hannahhoff.PillBox;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AFE148FF228B5A6B000F3253 /* Build configuration list for PBXProject "PillBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFE14914228B5A70000F3253 /* Debug */,
+				AFE14915228B5A70000F3253 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AFE14916228B5A70000F3253 /* Build configuration list for PBXNativeTarget "PillBox" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFE14917228B5A70000F3253 /* Debug */,
+				AFE14918228B5A70000F3253 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AFE148FC228B5A6B000F3253 /* Project object */;
+}
