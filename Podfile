@@ -6,5 +6,6 @@ target 'PillBox' do
   use_frameworks!
 
   # Pods for PillBox
+pod 'NWPusher'
 
 end

@@ -7,13 +7,10 @@
 //
 
 import UIKit
-import PushNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    let pushNotifications = PushNotifications.shared
-
     var window: UIWindow?
     
 //    func registerForPushNotifications() {
@@ -35,19 +32,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        self.pushNotifications.start(instanceId: "e4e97ea1-b05b-442c-9012-451896f6126b")
-        self.pushNotifications.registerForRemoteNotifications()
-        try? self.pushNotifications.addDeviceInterest(interest: "hello")
         
         return true
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        self.pushNotifications.registerDeviceToken(deviceToken)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        self.pushNotifications.handleNotification(userInfo: userInfo)
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
