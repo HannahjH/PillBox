@@ -7,51 +7,47 @@
 //
 
 import UIKit
-import UserNotifications
+import PushNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    let pushNotifications = PushNotifications.shared
 
     var window: UIWindow?
     
-    func registerForPushNotifications() {
-        UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
-            if let error = error {
-                print("💩 There was an error in \(#function) ; \(error) ; \(error.localizedDescription) 💩")
-                return
-            }
-            
-            print("Permission granted: \(granted)")
-            // 1. check if permission is granted
-            guard granted else { return }
-            // 2. attempt registration for remote notifications on the main thread
-            DispatchQueue.main.async {
-                UIApplication.shared.registerForRemoteNotifications()
-            }
-        }
-    }
+//    func registerForPushNotifications() {
+//        UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+//            if let error = error {
+//                print("💩 There was an error in \(#function) ; \(error) ; \(error.localizedDescription) 💩")
+//                return
+//            }
+//
+//            print("Permission granted: \(granted)")
+//            // 1. check if permission is granted
+//            guard granted else { return }
+//            // 2. attempt registration for remote notifications on the main thread
+//            DispatchQueue.main.async {
+//                UIApplication.shared.registerForRemoteNotifications()
+//            }
+//        }
+//    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        registerForPushNotifications()
+        self.pushNotifications.start(instanceId: "e4e97ea1-b05b-442c-9012-451896f6126b")
+        self.pushNotifications.registerForRemoteNotifications()
+        try? self.pushNotifications.addDeviceInterest(interest: "hello")
+        
         return true
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // 1. convert device token to string
-        let tokenParts = deviceToken.map { (data) -> String in
-            #warning("I don't know what that format is coming from 😅")
-            return String(format: "$02.2hhx", data)
-        }
-        
-        let token = tokenParts.joined()
-        // 2. print device token to use for PNs payloads
-        print("Device Token: \(token)")
+        self.pushNotifications.registerDeviceToken(deviceToken)
     }
-
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        // 1. print out error if PNs registration not successful
-        print("Failed to register for remote notifications with error: \(error)")
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        self.pushNotifications.handleNotification(userInfo: userInfo)
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
