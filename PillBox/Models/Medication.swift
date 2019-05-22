@@ -12,24 +12,17 @@ import CloudKit
 class Medication {
     var name: String
     var notes: String
-    var enabled: Bool
-    var wasTaken: Bool
-    var fireTime: Date
+    var enabled: Bool = true
+    var wasTaken: Bool = false
+    var alarm: [Alarm]
     let recordID: CKRecord.ID
     
-    var fireTimeAsString: String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .none
-        formatter.timeStyle = .short
-        return formatter.string(from: fireTime)
-    }
-    
-    init(name: String, notes: String, enabled: Bool, wasTaken: Bool, fireTime: Date, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)){
+    init(name: String, notes: String, wasTaken: Bool = false, enabled: Bool = true, alarm: [Alarm], recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)){
         self.name = name
         self.notes = notes
         self.enabled = enabled
         self.wasTaken = wasTaken
-        self.fireTime = fireTime
+        self.alarm = alarm
         self.recordID = recordID
     }
     
@@ -38,9 +31,9 @@ class Medication {
         let notes = ckRecord[MedicationConstants.notesKey] as? String,
         let enabled = ckRecord[MedicationConstants.enabledKey] as? Bool,
         let wasTaken = ckRecord[MedicationConstants.wasTakenKey] as? Bool,
-            let fireTime = ckRecord[MedicationConstants.fireTimeKey] as? Date else { return nil}
+            let alarm = ckRecord[MedicationConstants.alarmKey] as? [Alarm] else { return nil}
         
-        self.init(name: name, notes: notes, enabled: enabled, wasTaken: wasTaken, fireTime: fireTime, recordID: ckRecord.recordID)
+        self.init(name: name, notes: notes, wasTaken: wasTaken, enabled: enabled, alarm: alarm, recordID: ckRecord.recordID)
     }
     
 }
@@ -52,7 +45,7 @@ extension CKRecord {
         self.setValue(medication.notes, forKey: MedicationConstants.notesKey)
         self.setValue(medication.enabled, forKey: MedicationConstants.enabledKey)
         self.setValue(medication.wasTaken, forKey: MedicationConstants.wasTakenKey)
-        self.setValue(medication.fireTime, forKey: MedicationConstants.fireTimeKey)
+        self.setValue(medication.alarm, forKey: MedicationConstants.alarmKey)
     }
 }
 
@@ -61,8 +54,8 @@ extension Medication: Equatable {
         return lhs.name == rhs.name &&
         lhs.notes == rhs.notes &&
         lhs.enabled == rhs.enabled &&
-        lhs.wasTaken == rhs.wasTaken &&
-        lhs.fireTime == rhs.fireTime
+        lhs.wasTaken == rhs.wasTaken
+//        lhs.alarm == rhs.alarm
     }
 }
 
@@ -72,5 +65,5 @@ struct MedicationConstants {
     static let notesKey = "notes"
     static let enabledKey = "enabled"
     static let wasTakenKey = "wasTaken"
-    static let fireTimeKey = "fireTime"
+    static let alarmKey = "alarm"
 }

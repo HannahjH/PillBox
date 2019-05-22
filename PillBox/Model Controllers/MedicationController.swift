@@ -33,8 +33,8 @@ class MedicationController {
         }
     }
     
-    func addMedicationWith(name: String, notes: String, enabled: Bool, wasTaken: Bool, fireTime: Date, completion: @escaping (Bool) -> Void) {
-        let medication = Medication(name: name, notes: notes, enabled: enabled, wasTaken: wasTaken, fireTime: fireTime)
+    func addMedicationWith(name: String, notes: String, alarm: [Alarm], completion: @escaping (Bool) -> Void) {
+        let medication = Medication(name: name, notes: notes, alarm: alarm)
         saveMed(medication: medication, completion: completion)
     }
     
@@ -69,4 +69,6 @@ class MedicationController {
             }
         }
     }
+    
+    
 }

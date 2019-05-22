@@ -17,8 +17,46 @@
 		AFE14926228CCCAE000F3253 /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14925228CCCAE000F3253 /* Medication.swift */; };
 		AFE14928228CD265000F3253 /* MedicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14927228CD265000F3253 /* MedicationController.swift */; };
 		AFE1492A228DD911000F3253 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14929228DD911000F3253 /* SignUpViewController.swift */; };
+		AFE14934228F16DD000F3253 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14933228F16DD000F3253 /* NotificationService.swift */; };
+		AFE14938228F16DD000F3253 /* NotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AFE14931228F16DD000F3253 /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AFE14940228F4CBE000F3253 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE1493F228F4CBE000F3253 /* Alarm.swift */; };
+		AFE14942228F4DA2000F3253 /* PropertyReflectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14941228F4DA2000F3253 /* PropertyReflectable.swift */; };
+		AFE149442292F79F000F3253 /* Persistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE149432292F79F000F3253 /* Persistable.swift */; };
+		AFE149462292F7D3000F3253 /* AlarmApplicationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE149452292F7D3000F3253 /* AlarmApplicationDelegate.swift */; };
+		AFE149482292F803000F3253 /* AlarmSchedulerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE149472292F803000F3253 /* AlarmSchedulerDelegate.swift */; };
+		AFE1494B2293138F000F3253 /* Scheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE1494A2293138F000F3253 /* Scheduler.swift */; };
+		AFE1494F22932214000F3253 /* AlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE1494E22932214000F3253 /* AlarmController.swift */; };
+		AFE1495322934BE9000F3253 /* MedicationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE1495222934BE9000F3253 /* MedicationDetailViewController.swift */; };
+		AFE14955229350C2000F3253 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE14954229350C2000F3253 /* SwitchTableViewCell.swift */; };
+		AFE1495722935731000F3253 /* SetAlarmTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE1495622935731000F3253 /* SetAlarmTimeViewController.swift */; };
+		AFE1495922949390000F3253 /* MedicationListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE1495822949390000F3253 /* MedicationListTableViewController.swift */; };
+		AFE1495B229493D8000F3253 /* MedicationListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE1495A229493D8000F3253 /* MedicationListTableViewCell.swift */; };
 		E60A85E56AC9CE684A54BED7 /* Pods_PillBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E53861DB4B37841CDADDC0E5 /* Pods_PillBox.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AFE14936228F16DD000F3253 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFE148FC228B5A6B000F3253 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AFE14930228F16DD000F3253;
+			remoteInfo = NotificationService;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AFE1493C228F16DD000F3253 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AFE14938228F16DD000F3253 /* NotificationService.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0F60CDD3425FE78F76619829 /* Pods-PillBox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PillBox.debug.xcconfig"; path = "Target Support Files/Pods-PillBox/Pods-PillBox.debug.xcconfig"; sourceTree = "<group>"; };
@@ -36,6 +74,21 @@
 		AFE14927228CD265000F3253 /* MedicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationController.swift; sourceTree = "<group>"; };
 		AFE14929228DD911000F3253 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		AFE1492C228E000D000F3253 /* PillBox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PillBox.entitlements; sourceTree = "<group>"; };
+		AFE14931228F16DD000F3253 /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFE14933228F16DD000F3253 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		AFE14935228F16DD000F3253 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFE1493F228F4CBE000F3253 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		AFE14941228F4DA2000F3253 /* PropertyReflectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyReflectable.swift; sourceTree = "<group>"; };
+		AFE149432292F79F000F3253 /* Persistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistable.swift; sourceTree = "<group>"; };
+		AFE149452292F7D3000F3253 /* AlarmApplicationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmApplicationDelegate.swift; sourceTree = "<group>"; };
+		AFE149472292F803000F3253 /* AlarmSchedulerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSchedulerDelegate.swift; sourceTree = "<group>"; };
+		AFE1494A2293138F000F3253 /* Scheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scheduler.swift; sourceTree = "<group>"; };
+		AFE1494E22932214000F3253 /* AlarmController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmController.swift; sourceTree = "<group>"; };
+		AFE1495222934BE9000F3253 /* MedicationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationDetailViewController.swift; sourceTree = "<group>"; };
+		AFE14954229350C2000F3253 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		AFE1495622935731000F3253 /* SetAlarmTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetAlarmTimeViewController.swift; sourceTree = "<group>"; };
+		AFE1495822949390000F3253 /* MedicationListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationListTableViewController.swift; sourceTree = "<group>"; };
+		AFE1495A229493D8000F3253 /* MedicationListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationListTableViewCell.swift; sourceTree = "<group>"; };
 		B167F26A48BC36B87FB07F20 /* Pods-PillBox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PillBox.release.xcconfig"; path = "Target Support Files/Pods-PillBox/Pods-PillBox.release.xcconfig"; sourceTree = "<group>"; };
 		E53861DB4B37841CDADDC0E5 /* Pods_PillBox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PillBox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -50,6 +103,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AFE1492E228F16DD000F3253 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -59,7 +119,6 @@
 				0F60CDD3425FE78F76619829 /* Pods-PillBox.debug.xcconfig */,
 				B167F26A48BC36B87FB07F20 /* Pods-PillBox.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -67,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				AFE14906228B5A6B000F3253 /* PillBox */,
+				AFE14932228F16DD000F3253 /* NotificationService */,
 				AFE14905228B5A6B000F3253 /* Products */,
 				AFE1491F228CB3FF000F3253 /* Frameworks */,
 				4EC92D9F3435087F242BAF60 /* Pods */,
@@ -77,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				AFE14904228B5A6B000F3253 /* PillBox.app */,
+				AFE14931228F16DD000F3253 /* NotificationService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -84,6 +145,8 @@
 		AFE14906228B5A6B000F3253 /* PillBox */ = {
 			isa = PBXGroup;
 			children = (
+				AFE1494C22931680000F3253 /* Alarm */,
+				AFE1494A2293138F000F3253 /* Scheduler.swift */,
 				AFE1492C228E000D000F3253 /* PillBox.entitlements */,
 				AFE1491D228CAC1F000F3253 /* Models */,
 				AFE14924228CC5DE000F3253 /* Model Controllers */,
@@ -119,6 +182,7 @@
 				AFE1491E228CB3FD000F3253 /* PillBox.entitlements */,
 				AFE1491B228CAAA6000F3253 /* User.swift */,
 				AFE14925228CCCAE000F3253 /* Medication.swift */,
+				AFE1493F228F4CBE000F3253 /* Alarm.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -137,6 +201,7 @@
 			children = (
 				AFE14922228CC5D9000F3253 /* UserController.swift */,
 				AFE14927228CD265000F3253 /* MedicationController.swift */,
+				AFE1494E22932214000F3253 /* AlarmController.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -145,8 +210,41 @@
 			isa = PBXGroup;
 			children = (
 				AFE14929228DD911000F3253 /* SignUpViewController.swift */,
+				AFE1495222934BE9000F3253 /* MedicationDetailViewController.swift */,
+				AFE14954229350C2000F3253 /* SwitchTableViewCell.swift */,
+				AFE1495622935731000F3253 /* SetAlarmTimeViewController.swift */,
+				AFE1495822949390000F3253 /* MedicationListTableViewController.swift */,
+				AFE1495A229493D8000F3253 /* MedicationListTableViewCell.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		AFE14932228F16DD000F3253 /* NotificationService */ = {
+			isa = PBXGroup;
+			children = (
+				AFE14933228F16DD000F3253 /* NotificationService.swift */,
+				AFE14935228F16DD000F3253 /* Info.plist */,
+			);
+			path = NotificationService;
+			sourceTree = "<group>";
+		};
+		AFE149492292F98B000F3253 /* Alarm Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				AFE14941228F4DA2000F3253 /* PropertyReflectable.swift */,
+				AFE149432292F79F000F3253 /* Persistable.swift */,
+				AFE149452292F7D3000F3253 /* AlarmApplicationDelegate.swift */,
+				AFE149472292F803000F3253 /* AlarmSchedulerDelegate.swift */,
+			);
+			path = "Alarm Protocols";
+			sourceTree = "<group>";
+		};
+		AFE1494C22931680000F3253 /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				AFE149492292F98B000F3253 /* Alarm Protocols */,
+			);
+			path = Alarm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,15 +259,34 @@
 				AFE14901228B5A6B000F3253 /* Frameworks */,
 				AFE14902228B5A6B000F3253 /* Resources */,
 				6B8C3BB171A849A4544D8A8F /* [CP] Embed Pods Frameworks */,
+				AFE1493C228F16DD000F3253 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				AFE14937228F16DD000F3253 /* PBXTargetDependency */,
 			);
 			name = PillBox;
 			productName = PillBox;
 			productReference = AFE14904228B5A6B000F3253 /* PillBox.app */;
 			productType = "com.apple.product-type.application";
+		};
+		AFE14930228F16DD000F3253 /* NotificationService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFE1493B228F16DD000F3253 /* Build configuration list for PBXNativeTarget "NotificationService" */;
+			buildPhases = (
+				AFE1492D228F16DD000F3253 /* Sources */,
+				AFE1492E228F16DD000F3253 /* Frameworks */,
+				AFE1492F228F16DD000F3253 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationService;
+			productName = NotificationService;
+			productReference = AFE14931228F16DD000F3253 /* NotificationService.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -184,6 +301,9 @@
 					AFE14903228B5A6B000F3253 = {
 						CreatedOnToolsVersion = 10.2.1;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -191,6 +311,9 @@
 								enabled = 1;
 							};
 						};
+					};
+					AFE14930228F16DD000F3253 = {
+						CreatedOnToolsVersion = 10.2.1;
 					};
 				};
 			};
@@ -208,6 +331,7 @@
 			projectRoot = "";
 			targets = (
 				AFE14903228B5A6B000F3253 /* PillBox */,
+				AFE14930228F16DD000F3253 /* NotificationService */,
 			);
 		};
 /* End PBXProject section */
@@ -220,6 +344,13 @@
 				AFE14912228B5A70000F3253 /* LaunchScreen.storyboard in Resources */,
 				AFE1490F228B5A70000F3253 /* Assets.xcassets in Resources */,
 				AFE1490D228B5A6B000F3253 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFE1492F228F16DD000F3253 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,16 +408,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFE1495322934BE9000F3253 /* MedicationDetailViewController.swift in Sources */,
+				AFE149442292F79F000F3253 /* Persistable.swift in Sources */,
+				AFE14955229350C2000F3253 /* SwitchTableViewCell.swift in Sources */,
+				AFE149462292F7D3000F3253 /* AlarmApplicationDelegate.swift in Sources */,
+				AFE1495722935731000F3253 /* SetAlarmTimeViewController.swift in Sources */,
 				AFE1492A228DD911000F3253 /* SignUpViewController.swift in Sources */,
 				AFE14926228CCCAE000F3253 /* Medication.swift in Sources */,
+				AFE14942228F4DA2000F3253 /* PropertyReflectable.swift in Sources */,
+				AFE1494F22932214000F3253 /* AlarmController.swift in Sources */,
 				AFE14923228CC5D9000F3253 /* UserController.swift in Sources */,
 				AFE1491C228CAAA6000F3253 /* User.swift in Sources */,
 				AFE14928228CD265000F3253 /* MedicationController.swift in Sources */,
+				AFE1495B229493D8000F3253 /* MedicationListTableViewCell.swift in Sources */,
+				AFE149482292F803000F3253 /* AlarmSchedulerDelegate.swift in Sources */,
+				AFE1494B2293138F000F3253 /* Scheduler.swift in Sources */,
+				AFE14940228F4CBE000F3253 /* Alarm.swift in Sources */,
+				AFE1495922949390000F3253 /* MedicationListTableViewController.swift in Sources */,
 				AFE14908228B5A6B000F3253 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AFE1492D228F16DD000F3253 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFE14934228F16DD000F3253 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AFE14937228F16DD000F3253 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AFE14930228F16DD000F3253 /* NotificationService */;
+			targetProxy = AFE14936228F16DD000F3253 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AFE1490B228B5A6B000F3253 /* Main.storyboard */ = {
@@ -428,6 +587,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0F60CDD3425FE78F76619829 /* Pods-PillBox.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PillBox/PillBox.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -448,6 +608,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B167F26A48BC36B87FB07F20 /* Pods-PillBox.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PillBox/PillBox.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -459,6 +620,44 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hannahhoff.PillBox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AFE14939228F16DD000F3253 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L5VMA54SBQ;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hannahhoff.PillBox.NotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AFE1493A228F16DD000F3253 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L5VMA54SBQ;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.hannahhoff.PillBox.NotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -481,6 +680,15 @@
 			buildConfigurations = (
 				AFE14917228B5A70000F3253 /* Debug */,
 				AFE14918228B5A70000F3253 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AFE1493B228F16DD000F3253 /* Build configuration list for PBXNativeTarget "NotificationService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFE14939228F16DD000F3253 /* Debug */,
+				AFE1493A228F16DD000F3253 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
