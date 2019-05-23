@@ -13,6 +13,10 @@ protocol AlarmTableViewCellDelegate: class {
     func switchCellSwitchValueChanged(cell: SwitchTableViewCell)
 }
 
+protocol MedicationDetailViewControllerDelegate: class {
+    func medicationSaved(medication: Medication?)
+}
+
 class MedicationDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AlarmTableViewCellDelegate, SwitchTableViewCellDelegate {
     
     var medication: Medication? {
@@ -21,8 +25,9 @@ class MedicationDetailViewController: UIViewController, UITableViewDelegate, UIT
             updateViews()
         }
     }
-    
+    weak var delegate: MedicationDetailViewControllerDelegate?
     var alarms: [Alarm] = []
+//    var medications: [Medication] = []
     
     @IBOutlet weak var alarmTableView: UITableView!
     @IBOutlet weak var medicationTextField: UITextField!
@@ -46,20 +51,24 @@ class MedicationDetailViewController: UIViewController, UITableViewDelegate, UIT
         alarmTableView.reloadData()
     }
     
+//    func medSaved(medication: Medication?) {
+//        if let medication = medication {
+//            medications.append(medication)
+//        }
+////        DispatchQueue.main.async {
+////            self.tableView.reloadData()
+////        }
+//    }
+    
     @IBAction func doneButtonTapped(_ sender: Any) {
         guard let name = medicationTextField.text,
             !name.isEmpty else { return }
-        MedicationController.shared.addMedicationWith(name: name, notes: notesTextView.text, alarm: AlarmController.shared.alarms) { (medication) in
+        MedicationController.shared.addMedicationWith(name: name, notes: notesTextView.text, alarm: alarms) { (medication) in
             guard let medication = medication else { return }
+            self.delegate?.medicationSaved(medication: medication)
             self.alarms.forEach{ $0.medReference = CKRecord.Reference(recordID: medication.recordID, action: .none) }
-            MedicationController.shared.saveMed(medication: medication, completion: { (true) in
-                // Save the alarms to CloudKit
-                DispatchQueue.main.async {
-                    self.navigationController?.popViewController(animated: true)
-                }
-                
-            })
         }
+            self.navigationController?.popViewController(animated: true)
     }
     
     func switchCellSwitchValueChanged(cell: SwitchTableViewCell) {
@@ -121,7 +130,6 @@ class MedicationDetailViewController: UIViewController, UITableViewDelegate, UIT
 //     // Get the new view controller using segue.destination.
 //     // Pass the selected object to the new view controller.
      }
- 
 }
 
 extension MedicationDetailViewController: SetAlarmTimeViewControllerDelegate {

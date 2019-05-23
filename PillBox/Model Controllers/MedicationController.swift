@@ -23,7 +23,6 @@ class MedicationController {
         }
     }
     
-    
     func saveMed(medication: Medication, completion: @escaping (Bool) -> ()) {
         let record = CKRecord(medication: medication)
         CKContainer.default().publicCloudDatabase.save(record) { (record, error) in

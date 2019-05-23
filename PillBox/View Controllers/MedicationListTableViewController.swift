@@ -16,6 +16,8 @@ class MedicationListTableViewController: UITableViewController, MedsSwitchTableV
     
     let enabled: Bool = false
     
+    var medications: [Medication] = []
+    
     func medsSwitchCellSwitchValueChanged(cell: MedicationListTableViewCell) {
         //check status of alarm switches
         
@@ -70,5 +72,18 @@ class MedicationListTableViewController: UITableViewController, MedsSwitchTableV
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-
 }
+
+extension MedicationListTableViewController: MedicationDetailViewControllerDelegate {
+    
+    func medicationSaved(medication: Medication?) {
+        if let medication = medication {
+            medications.append(medication)
+            
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+}
+
