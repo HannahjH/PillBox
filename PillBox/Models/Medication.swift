@@ -16,14 +16,16 @@ class Medication {
     var wasTaken: Bool = false
     var alarm: [Alarm]
     let recordID: CKRecord.ID
+    let userReference: CKRecord.Reference
     
-    init(name: String, notes: String, wasTaken: Bool = false, enabled: Bool = true, alarm: [Alarm], recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)){
+    init(name: String, notes: String, wasTaken: Bool = false, enabled: Bool = true, alarm: [Alarm], recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), userReference: CKRecord.Reference){
         self.name = name
         self.notes = notes
         self.enabled = enabled
         self.wasTaken = wasTaken
         self.alarm = alarm
         self.recordID = recordID
+        self.userReference = userReference
     }
     
     convenience init?(ckRecord: CKRecord) {
@@ -31,9 +33,11 @@ class Medication {
         let notes = ckRecord[MedicationConstants.notesKey] as? String,
         let enabled = ckRecord[MedicationConstants.enabledKey] as? Bool,
         let wasTaken = ckRecord[MedicationConstants.wasTakenKey] as? Bool,
-            let alarm = ckRecord[MedicationConstants.alarmKey] as? [Alarm] else { return nil}
+            let alarm = ckRecord[MedicationConstants.alarmKey] as? [Alarm],
+        let userReference = ckRecord[MedicationConstants.userRefernceKey] as? CKRecord.Reference
+        else { return nil}
         
-        self.init(name: name, notes: notes, wasTaken: wasTaken, enabled: enabled, alarm: alarm, recordID: ckRecord.recordID)
+        self.init(name: name, notes: notes, wasTaken: wasTaken, enabled: enabled, alarm: alarm, recordID: ckRecord.recordID, userReference: userReference)
     }
     
 }
@@ -46,6 +50,7 @@ extension CKRecord {
         self.setValue(medication.enabled, forKey: MedicationConstants.enabledKey)
         self.setValue(medication.wasTaken, forKey: MedicationConstants.wasTakenKey)
         self.setValue(medication.alarm, forKey: MedicationConstants.alarmKey)
+        self.setValue(medication.userReference, forKey: MedicationConstants.userRefernceKey)
     }
 }
 
@@ -66,4 +71,5 @@ struct MedicationConstants {
     static let enabledKey = "enabled"
     static let wasTakenKey = "wasTaken"
     static let alarmKey = "alarm"
+    static let userRefernceKey = "userReference"
 }

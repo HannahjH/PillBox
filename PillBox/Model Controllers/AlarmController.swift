@@ -26,18 +26,18 @@ class AlarmController: AlarmScheduler {
                 return
             }
             guard let record = record,
-                let alarm = Alarm(ckRecord: record) else {
-                    completion(false); return }
+                let alarm = Alarm(ckRecord: record) else { completion(false); return }
             self.alarms.append(alarm)
             completion(true)
         }
     }
     
-    func addAlarm(fireDate: Date, enabled: Bool) {
+    func addAlarm(fireDate: Date, enabled: Bool, completion: @escaping (Bool) -> Void) {
         let alarm = Alarm(fireDate: fireDate)
-        alarm.enabled = enabled
-        AlarmController.shared.alarms.append(alarm)
-        scheduleUserNotifications(for: alarm)
+        saveAlarm(alarm: alarm, completion: completion)
+            alarm.enabled = enabled
+            AlarmController.shared.alarms.append(alarm)
+            self.scheduleUserNotifications(for: alarm)
     }
     
     func updateAlarm(alarm: Alarm, fireDate: Date, enabled: Bool) {

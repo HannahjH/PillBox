@@ -17,10 +17,11 @@ class MedicationListTableViewController: UITableViewController, MedsSwitchTableV
     let enabled: Bool = false
     
     func medsSwitchCellSwitchValueChanged(cell: MedicationListTableViewCell) {
+        //check status of alarm switches
         
-//        guard let indexPath = tableView.indexPath(for: cell) else { return }
-//        let medication = MedicationController.shared.meds[indexPath.row]
-//        MedicationController.shared.toggleEnabled(for: medication)
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        let medication = MedicationController.shared.meds[indexPath.row]
+        MedicationController.shared.toggleEnabled(for: medication)
     }
 
     override func viewDidLoad() {
@@ -35,22 +36,16 @@ class MedicationListTableViewController: UITableViewController, MedsSwitchTableV
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "medicationCell", for: indexPath) as? MedicationListTableViewCell
+        let medication = MedicationController.shared.meds[indexPath.row]
+        
+        cell?.delegate = self
+        cell?.medicationLabel.text = medication.name
+//        cell?.numOfAlarmsLabel.text = medication.
+        
+        return cell ?? UITableViewCell()
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -60,31 +55,20 @@ class MedicationListTableViewController: UITableViewController, MedsSwitchTableV
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+  
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toEditVC" {
+            let destinationVC = segue.destination as? MedicationDetailViewController
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            let medication = MedicationController.shared.meds[indexPath.row]
+            destinationVC?.medication = medication
+        }
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
 
 }

@@ -50,7 +50,7 @@ class UserController {
             
             guard let recordID = recordID else { completion?(false); return }
             let appleUserRef = CKRecord.Reference(recordID: recordID, action: .deleteSelf)
-            let user = User(secondaryUser: secondaryUser, medication: medication, name: name, email: email, appleUserRef: appleUserRef)
+            let user = User(secondaryUser: secondaryUser, name: name, email: email, appleUserRef: appleUserRef)
             let userRecord = CKRecord(user: user)
             CKContainer.default().publicCloudDatabase.save(userRecord, completionHandler: { (record, error) in
                 if let error = error {

@@ -7,6 +7,11 @@
 
 
 import UIKit
+import CloudKit
+
+protocol SetAlarmTimeViewControllerDelegate: class {
+    func alarmSaved(alarm: Alarm?)
+}
 
 class SetAlarmTimeViewController: UIViewController {
 
@@ -16,7 +21,14 @@ class SetAlarmTimeViewController: UIViewController {
             updateViews()
         }
     }
-
+    
+    var medication: Medication? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    weak var delegate: SetAlarmTimeViewControllerDelegate?
     var alarmIsOn: Bool = true
 
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -34,12 +46,17 @@ class SetAlarmTimeViewController: UIViewController {
     @IBAction func saveButtonTapped(_ sender: Any) {
         if let alarm = alarm {
             AlarmController.shared.updateAlarm(alarm: alarm, fireDate: datePicker.date, enabled: alarmIsOn)
+            navigationController?.popViewController(animated: true)
+//            delegate?.alarmSaved(alarm: alarm)
         } else {
-            AlarmController.shared.addAlarm(fireDate: datePicker.date, enabled: alarmIsOn)
-        }
-        DispatchQueue.main.async {
-            self.navigationController?.popViewController(animated: true)
-            
+            AlarmController.shared.addAlarm(fireDate: datePicker.date, enabled: alarmIsOn) { (true) in
+                guard let alarm = AlarmController.shared.alarms.last else { return }
+                self.delegate?.alarmSaved(alarm: alarm)
+                //self.delegate?.alarmSaved(alarm: nil)
+                }
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
 

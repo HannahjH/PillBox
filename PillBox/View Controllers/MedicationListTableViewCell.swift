@@ -14,6 +14,8 @@ protocol MedsSwitchTableViewCellDelegate: class {
 
 class MedicationListTableViewCell: UITableViewCell {
     
+    var switchOn: Bool = true
+    
     var medication: Medication? {
         didSet {
             updateViews()
@@ -25,16 +27,24 @@ class MedicationListTableViewCell: UITableViewCell {
     @IBOutlet weak var medicationLabel: UILabel!
     @IBOutlet weak var numOfAlarmsLabel: UILabel!
     @IBOutlet weak var medicationSwitch: UISwitch!
-    @IBOutlet weak var tableView: UITableView!
     
     func updateViews() {
         guard let medication = medication else { return }
         medicationLabel.text = medication.name
-        numOfAlarmsLabel.text = "\(medication.alarm.count)"
+        numOfAlarmsLabel.text = "\(AlarmController.shared.alarms.count)"
         medicationSwitch.isOn = medication.enabled
     }
     
     @IBAction func medsSwitchValueChanged(_ sender: Any) {
-        delegate?.medsSwitchCellSwitchValueChanged(cell: self)        
+        delegate?.medsSwitchCellSwitchValueChanged(cell: self)
+        
+        //check status of medSwitch
+        if medicationSwitch.isOn {
+            switchOn = true
+        }
+        if medicationSwitch.isOn == false {
+            medication?.enabled = false
+            
+        }
     }
 }

@@ -17,6 +17,13 @@ class MedicationController {
     
     let userTookMedsNotification = Notification.Name("userTookMeds")
     
+    var medications: Medication? {
+        didSet {
+            NotificationCenter.default.post(name: userTookMedsNotification, object: nil)
+        }
+    }
+    
+    
     func saveMed(medication: Medication, completion: @escaping (Bool) -> ()) {
         let record = CKRecord(medication: medication)
         CKContainer.default().publicCloudDatabase.save(record) { (record, error) in
@@ -33,9 +40,22 @@ class MedicationController {
         }
     }
     
-    func addMedicationWith(name: String, notes: String, alarm: [Alarm], completion: @escaping (Bool) -> Void) {
-        let medication = Medication(name: name, notes: notes, alarm: alarm)
-        saveMed(medication: medication, completion: completion)
+    func addMedicationWith(name: String, notes: String, alarm: [Alarm], completion: @escaping (Medication?) -> Void) {
+        guard let currentUser = UserController.shared.currentUser else { completion(nil) ; return }
+        let medication = Medication(name: name, notes: notes, alarm: alarm, userReference: CKRecord.Reference(recordID: currentUser.recordID, action: .none))
+        saveMed(medication: medication) { (success) in
+            if success {
+                completion(medication)
+            }
+        }
+    }
+    
+    func toggleEnabled(for medication: Medication) {
+        medication.enabled = !medication.enabled
+
+        if medication.enabled {
+
+        }
     }
     
     func fetchMedication(completion: @escaping (Bool) -> ()) {
@@ -69,6 +89,5 @@ class MedicationController {
             }
         }
     }
-    
-    
 }
+

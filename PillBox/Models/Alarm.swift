@@ -13,6 +13,7 @@ class Alarm {
     var fireDate: Date
     var enabled: Bool
     let recordID: CKRecord.ID
+    var medReference: CKRecord.Reference?
     
     var fireTimeAsString: String {
         let formatter = DateFormatter()
@@ -29,9 +30,11 @@ class Alarm {
     
     convenience init?(ckRecord: CKRecord) {
         guard let fireDate = ckRecord[AlarmConstants.fireDateKey] as? Date,
-            let enabled = ckRecord[AlarmConstants.enabledKey] as? Bool else { return nil }
+            let enabled = ckRecord[AlarmConstants.enabledKey] as? Bool,
+        let medReference = ckRecord[AlarmConstants.medReferenceKey] as? CKRecord.Reference else { return nil }
         
         self.init(fireDate: fireDate, enabled: enabled, recordID: ckRecord.recordID)
+        self.medReference = medReference
     }
 }
 
@@ -40,6 +43,7 @@ extension CKRecord {
         self.init(recordType: AlarmConstants.recordType, recordID: alarm.recordID)
         self.setValue(alarm.fireDate, forKey: AlarmConstants.fireDateKey)
         self.setValue(alarm.enabled, forKey: AlarmConstants.enabledKey)
+        self.setValue(alarm.medReference, forKey: AlarmConstants.medReferenceKey)
     }
 }
 
@@ -54,4 +58,5 @@ struct AlarmConstants {
     static let recordType = "Alarm"
     static let fireDateKey = "fireDateKey"
     static let enabledKey = "enabled"
+    static let medReferenceKey = "medReference"
 }
