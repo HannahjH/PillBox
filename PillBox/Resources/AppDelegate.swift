@@ -33,6 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+//        UserController.shared.createUserWith(name: "Hannah", email: "myEmail@gmail.com") { (success) in
+//            print("User was created! YAY!!!")
+//        }
+        UserController.shared.fetchCurrentUser { (success) in
+            
+        }
         registerForPushNotifications()
         return true
     }

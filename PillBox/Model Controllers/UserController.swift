@@ -40,7 +40,7 @@ class UserController {
         }
     }
     
-    func createUserWith(secondaryUser: [String], medication: [Medication], name: String, email: String, completion: ((Bool) -> Void)?) {
+    func createUserWith(name: String, email: String, completion: ((Bool) -> Void)?) {
         CKContainer.default().fetchUserRecordID { (recordID, error) in
             if let error = error {
                 print("💩 There was an error in \(#function) ; \(error) ; \(error.localizedDescription) 💩")
@@ -50,7 +50,7 @@ class UserController {
             
             guard let recordID = recordID else { completion?(false); return }
             let appleUserRef = CKRecord.Reference(recordID: recordID, action: .deleteSelf)
-            let user = User(secondaryUser: secondaryUser, name: name, email: email, appleUserRef: appleUserRef)
+            let user = User(name: name, email: email, appleUserRef: appleUserRef)
             let userRecord = CKRecord(user: user)
             CKContainer.default().publicCloudDatabase.save(userRecord, completionHandler: { (record, error) in
                 if let error = error {

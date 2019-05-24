@@ -13,9 +13,9 @@ protocol AlarmTableViewCellDelegate: class {
     func switchCellSwitchValueChanged(cell: SwitchTableViewCell)
 }
 
-protocol MedicationDetailViewControllerDelegate: class {
-    func medicationSaved(medication: Medication?)
-}
+//protocol MedicationDetailViewControllerDelegate: class {
+//    func medicationSaved(medication: Medication?)
+//}
 
 class MedicationDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AlarmTableViewCellDelegate, SwitchTableViewCellDelegate {
     
@@ -25,9 +25,9 @@ class MedicationDetailViewController: UIViewController, UITableViewDelegate, UIT
             updateViews()
         }
     }
-    weak var delegate: MedicationDetailViewControllerDelegate?
+//    weak var delegate: MedicationDetailViewControllerDelegate?
     var alarms: [Alarm] = []
-//    var medications: [Medication] = []
+    var medications: [Medication] = []
     
     @IBOutlet weak var alarmTableView: UITableView!
     @IBOutlet weak var medicationTextField: UITextField!
@@ -41,7 +41,9 @@ class MedicationDetailViewController: UIViewController, UITableViewDelegate, UIT
             if success {
                 DispatchQueue.main.async {
                     self.alarmTableView.reloadData()
+                    
                 }
+                
             }
         }
     }
@@ -65,10 +67,19 @@ class MedicationDetailViewController: UIViewController, UITableViewDelegate, UIT
             !name.isEmpty else { return }
         MedicationController.shared.addMedicationWith(name: name, notes: notesTextView.text, alarm: alarms) { (medication) in
             guard let medication = medication else { return }
-            self.delegate?.medicationSaved(medication: medication)
             self.alarms.forEach{ $0.medReference = CKRecord.Reference(recordID: medication.recordID, action: .none) }
+          self.medications.append(medication)
+//            self.delegate?.medicationSaved(medication: medication)
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+            }
+            
+//            MedicationController.shared.saveMed(medication: medication, completion: { (success) in
+//                DispatchQueue.main.async {
+//                    self.navigationController?.popViewController(animated: true)
+//                }
+//            })
         }
-            self.navigationController?.popViewController(animated: true)
     }
     
     func switchCellSwitchValueChanged(cell: SwitchTableViewCell) {

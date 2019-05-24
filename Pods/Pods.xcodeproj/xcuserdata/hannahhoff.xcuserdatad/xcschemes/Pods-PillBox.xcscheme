@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "98CDE3FB1CDA00683A08BBB4137C0740"
+               BlueprintIdentifier = "B57B7A9DB629BEB5E4DEF0EFCF7AD660"
                BuildableName = "Pods_PillBox.framework"
                BlueprintName = "Pods-PillBox"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "98CDE3FB1CDA00683A08BBB4137C0740"
+            BlueprintIdentifier = "B57B7A9DB629BEB5E4DEF0EFCF7AD660"
             BuildableName = "Pods_PillBox.framework"
             BlueprintName = "Pods-PillBox"
             ReferencedContainer = "container:Pods.xcodeproj">

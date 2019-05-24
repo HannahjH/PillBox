@@ -1,16 +1,26 @@
 PODS:
-  - PushNotifications (2.0.0)
+  - Bolts/Tasks (1.9.0)
+  - NWPusher (0.7.5)
+  - Parse (1.17.2):
+    - Parse/Core (= 1.17.2)
+  - Parse/Core (1.17.2):
+    - Bolts/Tasks (~> 1.9)
 
 DEPENDENCIES:
-  - PushNotifications
+  - NWPusher
+  - Parse
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - PushNotifications
+    - Bolts
+    - NWPusher
+    - Parse
 
 SPEC CHECKSUMS:
-  PushNotifications: db23723ad406eeeae365b9ba8f473bf0a54be093
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  NWPusher: 9b29a44754d88cb02c28a1e9bc8750845506123e
+  Parse: 3b31a3dd1777b07ee7f0caee32fafbff544483a5
 
-PODFILE CHECKSUM: 6ac0a80ec50f8425b41c5019c4ae3ef258365b7d
+PODFILE CHECKSUM: 4d055250d2e90d42998915624396723266345074
 
 COCOAPODS: 1.6.1

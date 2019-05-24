@@ -7,5 +7,6 @@ target 'PillBox' do
 
   # Pods for PillBox
 pod 'NWPusher'
+pod 'Parse'
 
 end

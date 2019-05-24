@@ -13,7 +13,7 @@ class MedicationController {
     
     static let shared = MedicationController()
     
-    var meds: [Medication] = []
+    var meds = [Medication]()
     
     let userTookMedsNotification = Notification.Name("userTookMeds")
     
@@ -41,7 +41,7 @@ class MedicationController {
     
     func addMedicationWith(name: String, notes: String, alarm: [Alarm], completion: @escaping (Medication?) -> Void) {
         guard let currentUser = UserController.shared.currentUser else { completion(nil) ; return }
-        let medication = Medication(name: name, notes: notes, alarm: alarm, userReference: CKRecord.Reference(recordID: currentUser.recordID, action: .none))
+        let medication = Medication(name: name, notes: notes, userReference: CKRecord.Reference(recordID: currentUser.recordID, action: .none))
         saveMed(medication: medication) { (success) in
             if success {
                 completion(medication)
@@ -57,22 +57,28 @@ class MedicationController {
         }
     }
     
-    func fetchMedication(completion: @escaping (Bool) -> ()) {
+    func fetchMedication(completion: @escaping ([Medication]?) -> Void) {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: MedicationConstants.recordType, predicate: predicate)
         CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
             if let error = error {
                 print("💩 There was an error in \(#function) ; \(error) ; \(error.localizedDescription) 💩")
-                completion(false)
+//                completion(false)
                 return
             }
-            
-            guard let records = records else { completion(false); return }
+
+            guard let records = records else { completion(nil); return }
             let medications = records.compactMap{ Medication(ckRecord: $0)}
             self.meds = medications
-            completion(true)
+            completion(medications)
         }
     }
+    
+//    func fetchMedsForCurrentUser(completion: @escaping ([Medication]?) -> Void) {
+//        guard let currentUser = UserController.shared.currentUser else { completion(nil); return }
+//        let userRefence = CKRecord.Reference(recordID: currentUser.recordID, action: .deleteSelf)
+//        fetchMedication(userRefernce: userRefence, completion: completion)
+//    }
     
     func deleteMedication(medication: Medication, completion: @escaping (Bool) -> ()) {
         guard let index = MedicationController.shared.meds.firstIndex(of: medication) else { return }

@@ -16,7 +16,7 @@ class MedicationListTableViewController: UITableViewController, MedsSwitchTableV
     
     let enabled: Bool = false
     
-    var medications: [Medication] = []
+//    var medications: [Medication] = []
     
     func medsSwitchCellSwitchValueChanged(cell: MedicationListTableViewCell) {
         //check status of alarm switches
@@ -28,6 +28,15 @@ class MedicationListTableViewController: UITableViewController, MedsSwitchTableV
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserController.shared.fetchCurrentUser { (success) in
+            if success {
+                MedicationController.shared.fetchMedication(completion: { (success) in
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                })
+            }
+        }
     }
 
     // MARK: - Table view data source
@@ -74,16 +83,16 @@ class MedicationListTableViewController: UITableViewController, MedsSwitchTableV
     }
 }
 
-extension MedicationListTableViewController: MedicationDetailViewControllerDelegate {
-    
-    func medicationSaved(medication: Medication?) {
-        if let medication = medication {
-            medications.append(medication)
-            
-        }
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-}
+//extension MedicationListTableViewController: MedicationDetailViewControllerDelegate {
+//    
+//    func medicationSaved(medication: Medication?) {
+//        if let medication = medication {
+//            medications.append(medication)
+//            
+//        }
+//        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+//        }
+//    }
+//}
 

@@ -10,7 +10,7 @@ import Foundation
 import CloudKit
 
 class User {
-    var secondaryUser: [String]
+    var secondaryUser: [User]?
 //    var medication: [Medication : [Alarm]]
     /* Medication Model w/ name: String,  */
     var name: String
@@ -18,8 +18,8 @@ class User {
     let recordID: CKRecord.ID
     var appleUserRef: CKRecord.Reference
     
-    init(secondaryUser: [String], name: String, email: String, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), appleUserRef: CKRecord.Reference) {
-        self.secondaryUser = secondaryUser
+    init(name: String, email: String, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), appleUserRef: CKRecord.Reference) {
+//        self.secondaryUser = secondaryUser
         self.name = name
         self.email = email
         self.recordID = recordID
@@ -27,12 +27,13 @@ class User {
     }
     
     convenience init?(ckRecord: CKRecord) {
-        guard let secondaryUser = ckRecord[UserConstants.secondaryUserKey] as? [String],
+        guard let secondaryUser = ckRecord[UserConstants.secondaryUserKey] as? [User]?,
         let name = ckRecord[UserConstants.nameKey] as? String,
         let email = ckRecord[UserConstants.emailKey] as? String,
         let appleUserRef = ckRecord[UserConstants.appleUserRefKey] as? CKRecord.Reference else { return nil }
         
-        self.init(secondaryUser: secondaryUser, name: name, email: email, recordID: ckRecord.recordID, appleUserRef: appleUserRef)
+        self.init(name: name, email: email, recordID: ckRecord.recordID, appleUserRef: appleUserRef)
+        self.secondaryUser = secondaryUser
         
     }
     
