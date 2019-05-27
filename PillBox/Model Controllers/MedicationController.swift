@@ -39,7 +39,7 @@ class MedicationController {
         }
     }
     
-    func addMedicationWith(name: String, notes: String, alarm: [Alarm], completion: @escaping (Medication?) -> Void) {
+    func addMedicationWith(name: String, notes: String, completion: @escaping (Medication?) -> Void) {
         guard let currentUser = UserController.shared.currentUser else { completion(nil) ; return }
         let medication = Medication(name: name, notes: notes, userReference: CKRecord.Reference(recordID: currentUser.recordID, action: .none))
         saveMed(medication: medication) { (success) in
@@ -47,13 +47,32 @@ class MedicationController {
                 completion(medication)
             }
         }
+        #warning("Call scheduleUserNotifications here? Might call the notification twice")
+        // scheduleUserNotifications????
     }
     
-    func toggleEnabled(for medication: Medication) {
-        medication.enabled = !medication.enabled
-
-        if medication.enabled {
-
+    func updateMedications(medication: Medication, name: String, notes: String, completion: @escaping ((Bool) -> Void)) {
+        medication.name = name
+        medication.notes = notes
+        
+        CKContainer.default().publicCloudDatabase.fetch(withRecordID: medication.recordID) { (record, error) in
+            if let error = error {
+                print("💩 There was an error in \(#function) ; \(error) ; \(error.localizedDescription) 💩")
+                completion(false)
+                return
+            }
+            guard let record = record else { completion(false); return }
+            record[MedicationConstants.nameKey] = name
+            record[MedicationConstants.notesKey] = notes
+            
+            let operation = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: nil)
+            operation.savePolicy = .changedKeys
+            operation.queuePriority = .high
+            operation.qualityOfService = .userInitiated
+            operation.modifyRecordsCompletionBlock = { (records, recirdsIDs, error) in
+                completion(true)
+            }
+            CKContainer.default().publicCloudDatabase.add(operation)
         }
     }
     
@@ -74,11 +93,12 @@ class MedicationController {
         }
     }
     
-//    func fetchMedsForCurrentUser(completion: @escaping ([Medication]?) -> Void) {
-//        guard let currentUser = UserController.shared.currentUser else { completion(nil); return }
-//        let userRefence = CKRecord.Reference(recordID: currentUser.recordID, action: .deleteSelf)
-//        fetchMedication(userRefernce: userRefence, completion: completion)
-//    }
+    func toggleEnabled(for medication: Medication) {
+        medication.enabled = !medication.enabled
+        
+        if medication.enabled {
+        }
+    }
     
     func deleteMedication(medication: Medication, completion: @escaping (Bool) -> ()) {
         guard let index = MedicationController.shared.meds.firstIndex(of: medication) else { return }

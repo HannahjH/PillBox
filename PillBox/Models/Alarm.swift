@@ -13,7 +13,7 @@ class Alarm {
     var fireDate: Date
     var enabled: Bool
     let recordID: CKRecord.ID
-    var medReference: CKRecord.Reference?
+    var medReference: CKRecord.Reference
     
     var fireTimeAsString: String {
         let formatter = DateFormatter()
@@ -22,19 +22,19 @@ class Alarm {
         return formatter.string(from: fireDate)
     }
     
-    init(fireDate: Date, enabled: Bool = true, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString)){
+    init(fireDate: Date, enabled: Bool = true, recordID: CKRecord.ID = CKRecord.ID(recordName: UUID().uuidString), medReference: CKRecord.Reference){
         self.fireDate = fireDate
         self.enabled = enabled
         self.recordID = recordID
+        self.medReference = medReference
     }
     
     convenience init?(ckRecord: CKRecord) {
         guard let fireDate = ckRecord[AlarmConstants.fireDateKey] as? Date,
             let enabled = ckRecord[AlarmConstants.enabledKey] as? Bool,
-        let medReference = ckRecord[AlarmConstants.medReferenceKey] as? CKRecord.Reference else { return nil }
+                let medReference = ckRecord[AlarmConstants.medReferenceKey] as? CKRecord.Reference else { return nil }
         
-        self.init(fireDate: fireDate, enabled: enabled, recordID: ckRecord.recordID)
-        self.medReference = medReference
+        self.init(fireDate: fireDate, enabled: enabled, recordID: ckRecord.recordID, medReference: medReference)
     }
 }
 
@@ -50,7 +50,7 @@ extension CKRecord {
 extension Alarm: Equatable {
     static func == (lhs: Alarm, rhs: Alarm) -> Bool {
         return lhs.fireDate == rhs.fireDate &&
-        lhs.enabled == rhs.enabled
+            lhs.enabled == rhs.enabled
     }
 }
 

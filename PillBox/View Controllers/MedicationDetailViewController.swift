@@ -25,62 +25,59 @@ class MedicationDetailViewController: UIViewController, UITableViewDelegate, UIT
             updateViews()
         }
     }
-//    weak var delegate: MedicationDetailViewControllerDelegate?
     var alarms: [Alarm] = []
-    var medications: [Medication] = []
+//    var medications: [Medication] = []
     
     @IBOutlet weak var alarmTableView: UITableView!
     @IBOutlet weak var medicationTextField: UITextField!
     @IBOutlet weak var notesTextView: UITextView!
+    @IBOutlet weak var addAlarmButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         alarmTableView.dataSource = self
-        updateViews()
+        //        updateViews()
+        //        alarmTableView.isHidden = true
+        addAlarmButton.isHidden = true
         AlarmController.shared.fetchAlarm { (success) in
-            if success {
                 DispatchQueue.main.async {
+//                    self.alarms = AlarmController.shared.alarms
                     self.alarmTableView.reloadData()
-                    
-                }
-                
             }
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+//        self.alarms = AlarmController.shared.alarms
         alarmTableView.reloadData()
     }
     
-//    func medSaved(medication: Medication?) {
-//        if let medication = medication {
-//            medications.append(medication)
-//        }
-////        DispatchQueue.main.async {
-////            self.tableView.reloadData()
-////        }
-//    }
-    
-    @IBAction func doneButtonTapped(_ sender: Any) {
+    @IBAction func saveButtonTapped(_ sender: Any) {
         guard let name = medicationTextField.text,
-            !name.isEmpty else { return }
-        MedicationController.shared.addMedicationWith(name: name, notes: notesTextView.text, alarm: alarms) { (medication) in
-            guard let medication = medication else { return }
-            self.alarms.forEach{ $0.medReference = CKRecord.Reference(recordID: medication.recordID, action: .none) }
-          self.medications.append(medication)
-//            self.delegate?.medicationSaved(medication: medication)
-            DispatchQueue.main.async {
-                self.navigationController?.popViewController(animated: true)
+            let notes = notesTextView.text
+            else { return }
+        
+        if let medication = medication {
+            MedicationController.shared.updateMedications(medication: medication, name: name, notes: notes) { (success) in
+                if success {
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
             }
-            
-//            MedicationController.shared.saveMed(medication: medication, completion: { (success) in
-//                DispatchQueue.main.async {
-//                    self.navigationController?.popViewController(animated: true)
-//                }
-//            })
+        } else {
+            MedicationController.shared.addMedicationWith(name: name, notes: notes) { (medication) in
+                guard let medication = medication else { return }
+                self.medication = medication
+                AlarmController.shared.alarms.forEach { $0.medReference = CKRecord.Reference(recordID: medication.recordID, action: .none) }
+                    DispatchQueue.main.async {
+                        self.alertController()
+                        
+                    }
+                }
+            }
         }
-    }
     
     func switchCellSwitchValueChanged(cell: SwitchTableViewCell) {
         guard let indexPath = alarmTableView.indexPath(for: cell) else { return }
@@ -90,18 +87,20 @@ class MedicationDetailViewController: UIViewController, UITableViewDelegate, UIT
     
     func updateViews() {
         guard let medication = medication else { return }
-        
-        medicationTextField.text = medication.name
-        notesTextView.text = medication.notes
+        DispatchQueue.main.async {
+            self.medicationTextField.text = medication.name
+            self.notesTextView.text = medication.notes
+            
+        }
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return alarms.count
+        return AlarmController.shared.alarms.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell", for: indexPath) as? SwitchTableViewCell
-        let alarm = alarms[indexPath.row]
+        let alarm = AlarmController.shared.alarms[indexPath.row]
         
         cell?.delegate = self
         cell?.timeLabel.text = alarm.fireTimeAsString
@@ -111,21 +110,21 @@ class MedicationDetailViewController: UIViewController, UITableViewDelegate, UIT
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alarm = alarms[indexPath.row]
+            let alarm = AlarmController.shared.alarms[indexPath.row]
             AlarmController.shared.deleteAlarm(alarm: alarm) { (success) in
                 if success {
                     DispatchQueue.main.async {
-                        self.alarmTableView.deleteRows(at: [indexPath], with: .fade)
+                        self.alarmTableView.deleteRows(at: [indexPath], with: .automatic)
                     }
                 }
             }
         }
     }
     
-     // MARK: - Navigation
-      
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toEditSetAlarmTime" {
             let destinationVC = segue.destination as? SetAlarmTimeViewController
             guard let indexPath = alarmTableView.indexPathForSelectedRow else { return }
@@ -138,19 +137,40 @@ class MedicationDetailViewController: UIViewController, UITableViewDelegate, UIT
             let destinationVC = segue.destination as? SetAlarmTimeViewController
             destinationVC?.delegate = self
         }
-//     // Get the new view controller using segue.destination.
-//     // Pass the selected object to the new view controller.
-     }
+        
+        if segue.identifier == "toTimePicker" {
+            let destinationVC = segue.destination as? SetAlarmTimeViewController
+            destinationVC?.medication = medication
+        }
+    }
 }
 
 extension MedicationDetailViewController: SetAlarmTimeViewControllerDelegate {
     
     func alarmSaved(alarm: Alarm?) {
+
         if let alarm = alarm {
-            alarms.append(alarm)
+            AlarmController.shared.alarms.append(alarm)
+
         }
         DispatchQueue.main.async {
-            self.alarmTableView.reloadData()            
+            self.alarmTableView.reloadData()
         }
+    }
+    
+    func alertController() {
+        let alertController = UIAlertController(title: "Set a reminder?", message: "You can add alarms later", preferredStyle: .alert)
+        
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (_) in
+            
+            self.performSegue(withIdentifier: "toTimePicker", sender: self)
+        }
+        
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        present(alertController, animated: true, completion: nil)
+        
+        
     }
 }

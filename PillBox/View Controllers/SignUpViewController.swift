@@ -16,31 +16,26 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-
-
-@IBAction func signUpButtonTapped(_ sender: Any) {
-    guard let email = emailTextField.text,
-    let name = nameTextField.text,
-    !email.isEmpty,
-        !name.isEmpty else { return }
     
-    UserController.shared.createUserWith(
-    name: name, email: email) { (success) in
-        if success {
-
+    @IBAction func signUpButtonTapped(_ sender: Any) {
+        guard let email = emailTextField.text,
+            let name = nameTextField.text,
+            !email.isEmpty,
+            !name.isEmpty else { return }
+        
+        UserController.shared.createUserWith(name: name, email: email) { (success) in
+            
         }
     }
-}
-
-/*
- // MARK: - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
- // Get the new view controller using segue.destination.
- // Pass the selected object to the new view controller.
- }
- */
-
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

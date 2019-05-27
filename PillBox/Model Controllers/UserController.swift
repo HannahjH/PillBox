@@ -62,6 +62,16 @@ class UserController {
         }
     }
     
+//    func createUserWithShared(name: String, email: String, completion: ((Bool) -> Void)?) {
+//        let container = CKContainer.default()
+//        let privateDatabase = container.privateCloudDatabase
+//        let customZone = CKRecordZone(zoneName: "SharedZone")
+//
+//        privateDatabase.save(customZone) { (returnRecord, error) in
+//            completion?(true)
+//        }
+//    }
+    
     func fetchCurrentUser(completion: @escaping (Bool) -> Void) {
         CKContainer.default().fetchUserRecordID { (recordID, error) in
             if let error = error {
@@ -89,3 +99,40 @@ class UserController {
         }
     }
 }
+
+//extension UserController {
+//
+//    func share() {
+//    let share = CKShare(rootRecord: userRecord)
+//    share[CKShareTitleKey] = "Some title" as CKRecordValue?share[CKShareTypeKey] = "Some type" as CKRecordValue?
+//        let sharingController = cloudSharingController.self
+//    (preparationHandler: {(UICloudSharingController, handler: @escaping (CKShare?, CKContainer?, Error?) -> Void) in
+//    let modifyOp = CKModifyRecordsOperation(recordsToSave: [employeeRecord, share], recordIDsToDelete: nil)
+//    modifyOp.modifyRecordsCompletionBlock = { (record, recordID, error) in
+//    handler(share, CKContainer.default(), error)
+//    }
+//
+//    CKContainer.default().privateCloudDatabase.add(modifyOp)
+//    })
+//
+//    sharingController.availablePermissions = [.allowReadWrite, .allowPrivate]
+//    sharingController.delegate = self
+//    self.present(sharingController, animated:true, completion:nil)
+//    }
+//    func cloudSharingController(_ controller: UICloudSharingController, failedToSaveShareWithError error: Error) {
+//        // Failed to save, handle the error better than I did :-)
+//        // Also, this method is required!
+//        print(error)
+//    }
+//    //    func itemThumbnailData(for: UICloudSharingController) -> Data? {
+//    //        // This sets the image in the middle, nil is the default
+//    //        //document image you see, this method is not required
+//    //        return nil
+//    //    }
+//    func itemTitle(for: UICloudSharingController) -> String? {
+//        // Set the title here, this method is required!
+//        // returning nil or failing to implement delegate methods
+//        //results in "Untitled"
+//        return "Alice Campbell"
+//    }
+//}

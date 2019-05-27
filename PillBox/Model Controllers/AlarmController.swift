@@ -27,23 +27,47 @@ class AlarmController: AlarmScheduler {
             }
             guard let record = record,
                 let alarm = Alarm(ckRecord: record) else { completion(false); return }
-            self.alarms.append(alarm)
+//            self.alarms.append(alarm)
             completion(true)
         }
     }
     
-    func addAlarm(fireDate: Date, enabled: Bool, completion: @escaping (Bool) -> Void) {
-        let alarm = Alarm(fireDate: fireDate)
-        saveAlarm(alarm: alarm, completion: completion)
+    func addAlarm(for medication: Medication, fireDate: Date, enabled: Bool, completion: @escaping (Alarm?) -> Void) {
+        let alarm = Alarm(fireDate: fireDate, medReference: CKRecord.Reference(recordID: medication.recordID, action: .none))
             alarm.enabled = enabled
-            AlarmController.shared.alarms.append(alarm)
+        saveAlarm(alarm: alarm) { (success) in
+            if success {
+                completion(alarm)
+            }
+        }
+//            AlarmController.shared.alarms.append(alarm)
             self.scheduleUserNotifications(for: alarm)
     }
     
-    func updateAlarm(alarm: Alarm, fireDate: Date, enabled: Bool) {
+    func updateAlarm(alarm: Alarm, fireDate: Date, enabled: Bool, completion: @escaping ((Bool) -> Void)) {
         alarm.fireDate = fireDate
         alarm.enabled = enabled
         scheduleUserNotifications(for: alarm)
+        
+        CKContainer.default().publicCloudDatabase.fetch(withRecordID: alarm.recordID) { (record, error) in
+            if let error = error {
+                print("💩 There was an error in \(#function) ; \(error) ; \(error.localizedDescription) 💩")
+                completion(false)
+                return
+            }
+            guard let record = record else { completion(false); return }
+            record[AlarmConstants.fireDateKey] = fireDate
+            record[AlarmConstants.enabledKey] = fireDate
+            
+            let operation = CKModifyRecordsOperation(recordsToSave: [record], recordIDsToDelete: nil)
+            operation.savePolicy = .changedKeys
+            operation.queuePriority = .high
+            operation.qualityOfService = .userInitiated
+            operation.modifyRecordsCompletionBlock = { (records, recirdsIDs, error) in
+                completion(true)
+            }
+            CKContainer.default().publicCloudDatabase.add(operation)
+        }
     }
     
     func toggleEnabled(for alarm: Alarm) {
@@ -56,19 +80,19 @@ class AlarmController: AlarmScheduler {
         }
     }
     
-    func fetchAlarm(completion: @escaping (Bool) -> ()) {
+    func fetchAlarm(completion: @escaping ([Alarm]?) -> Void) {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: AlarmConstants.recordType, predicate: predicate)
         CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil) { (records, error) in
             if let error = error {
                 print("💩 There was an error in \(#function) ; \(error) ; \(error.localizedDescription) 💩")
-                completion(false)
+//                completion(false)
                 return
             }
-            guard let records = records else { completion(false); return }
+            guard let records = records else { completion(nil); return }
             let alarms = records.compactMap{ Alarm(ckRecord: $0)}
             self.alarms = alarms
-            completion(true)
+            completion(alarms)
         }
     }
     

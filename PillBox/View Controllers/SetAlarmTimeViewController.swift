@@ -14,7 +14,7 @@ protocol SetAlarmTimeViewControllerDelegate: class {
 }
 
 class SetAlarmTimeViewController: UIViewController {
-
+    
     var alarm: Alarm? {
         didSet {
             loadViewIfNeeded()
@@ -30,14 +30,14 @@ class SetAlarmTimeViewController: UIViewController {
     
     weak var delegate: SetAlarmTimeViewControllerDelegate?
     var alarmIsOn: Bool = true
-
+    
     @IBOutlet weak var datePicker: UIDatePicker!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
-
+    
     private func updateViews() {
         guard let alarm = alarm else { return }
         datePicker.date = alarm.fireDate
@@ -45,14 +45,23 @@ class SetAlarmTimeViewController: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         if let alarm = alarm {
-            AlarmController.shared.updateAlarm(alarm: alarm, fireDate: datePicker.date, enabled: alarmIsOn)
-            navigationController?.popViewController(animated: true)
-//            delegate?.alarmSaved(alarm: alarm)
-        } else {
-            AlarmController.shared.addAlarm(fireDate: datePicker.date, enabled: alarmIsOn) { (true) in
-                guard let alarm = AlarmController.shared.alarms.last else { return }
-                self.delegate?.alarmSaved(alarm: alarm)
+            AlarmController.shared.updateAlarm(alarm: alarm, fireDate: datePicker.date, enabled: alarmIsOn) { (success) in
+                if success {
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }
+            }
+        } else {
+            guard let medication = medication else { return }
+            AlarmController.shared.addAlarm(for: medication, fireDate: datePicker.date, enabled: alarmIsOn) { (_) in
+                ////                guard let alarm = AlarmController.shared.alarms else { return }
+                guard let alarm = self.alarm else { return }
+                self.delegate?.alarmSaved(alarm: alarm)
+                AlarmController.shared.alarms.append(alarm)
+                
+                
+            }
             DispatchQueue.main.async {
                 self.navigationController?.popViewController(animated: true)
             }
